@@ -34,32 +34,32 @@ export class CryptographyService {
     return this.ivCustomeAES;
   }
 
-  gererateHash() {
+  generateHash() {
     return CryptoJS.lib.WordArray.random(128 / 8).toString();
   }
 
-  gererateKeyAndIV(pass = null) {
+  generateKeyAndIV(pass = null) {
     if (pass == null) {
       pass = CryptoJS.lib.WordArray.random(128 / 8);
     }
-    this.gererateKey(pass);
-    this.gererateIV();
+    this.generateKey(pass);
+    this.generateIV();
   }
 
-  gererateKey(pass = null) {
+  generateKey(pass = null) {
     var salt = CryptoJS.lib.WordArray.random(128 / 8);
     if (pass == null) {
       pass = CryptoJS.lib.WordArray.random(128 / 8);
     }
     var key = CryptoJS.PBKDF2(pass, salt, {
       keySize: this.keySize / 32,
-      iterations: this.iterations
+      iterations: this.iterations,
     });
     this.key = key.toString().toUpperCase();
     this.keyCustomeAES = key.toString().toUpperCase();
   }
 
-  gererateIV() {
+  generateIV() {
     this.ivCustomeAES = CryptoJS.lib.WordArray.random(this.ivSize / 8)
       .toString()
       .toUpperCase();
@@ -135,7 +135,7 @@ export class CryptographyService {
         keySize: 128 / 8,
         iv: iv,
         mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7
+        padding: CryptoJS.pad.Pkcs7,
       }
     );
 
@@ -149,7 +149,7 @@ export class CryptographyService {
       keySize: 128 / 8,
       iv: iv,
       mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7
+      padding: CryptoJS.pad.Pkcs7,
     });
 
     return decrypted.toString(CryptoJS.enc.Utf8);
@@ -183,7 +183,7 @@ export class CryptographyService {
       keySize: 128 / 8,
       iv: iv,
       mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7
+      padding: CryptoJS.pad.Pkcs7,
     });
 
     return encrypted.toString();
@@ -197,7 +197,7 @@ export class CryptographyService {
       keySize: 128 / 8,
       iv: iv,
       mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7
+      padding: CryptoJS.pad.Pkcs7,
     });
 
     return decrypted.toString(CryptoJS.enc.Utf16LE);

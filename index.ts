@@ -17,9 +17,9 @@ const appEncrypted: HTMLElement = document.getElementById('encrypted');
 const appDecrypted: HTMLElement = document.getElementById('decrypted');
 
 const securityService = new CryptographyService();
-appHash.append(securityService.gererateHash());
+appHash.append(securityService.generateHash());
 
-securityService.gererateKeyAndIV();
+securityService.generateKeyAndIV();
 // Key from API
 securityService.key = '134CD3EC1746CA71';
 appKey.append(securityService.key);
